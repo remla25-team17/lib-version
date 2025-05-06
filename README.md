@@ -6,7 +6,7 @@
 
 - [Installation and Development](#-installationanddevelopment)
 - [🛠 Requirements](#-requirements)
-- [⚙️ GitHub Actions & CI/CD](#️-github-actions--cicd)
+- [⚙️ Release Workflow](#️-releaseworkflow)
 
 ## [Installation and Development](#-installationanddevelopment)
 
@@ -25,17 +25,12 @@ pip install -r requirements.txt
 
 The library requires Python 3.10.
 
-## [⚙️ GitHub Actions & CI/CD](#️-github-actions--cicd)
-We use **GitHub Actions** to automate our entire CI/CD pipeline. Key aspects include:
+## [⚙️ Release Workflow](#️-releaseworkflow)
+The project uses GitHub Actions to automate the release process. When a new tag is pushed in the format `v<MAJOR>.<MINOR>.<PATCH>`, the workflow will:
 
-- **Automated builds:** Every push to `main` and `develop` triggers the CI workflow to build the code.
-- **Docker image publishing:** Our workflows build Docker images for both `app` and `model-service` and push them to GHCR under:
-    - `ghcr.io/remla25-team17/app:<version>`
-    - `ghcr.io/remla25-team17/model-service:<version>`
-- **Versioning:** We use **GitVersion** to automate semantic versioning based on Git history and branch naming conventions. This ensures:
-    - Stable releases for `main`
-    - Pre-releases (e.g., `canary` tags) for `develop` and feature branches.
-- **Release automation:** New releases are automatically published to GitHub Releases with changelogs and contributor lists, ensuring traceability.
+1. Parse the version from the tag.
+2. Inject the version into `pyproject.toml`.
+3. Build the package.
 
 ## Contact
 
