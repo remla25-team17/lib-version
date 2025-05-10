@@ -14,5 +14,8 @@ packages = ["lib_version"]
 version_scheme = "guess-next-dev"
 local_scheme = "node-and-date"
 
+[tool.setuptools.dynamic]
+version = {attr = "lib_version.version.__version__"}
+
 [tool.setuptools.package-dir]
 "" = "."
