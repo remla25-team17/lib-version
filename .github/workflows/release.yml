@@ -46,7 +46,11 @@ jobs:
           pip install build
       - name: Inject version into lib_version
         run: |
-          VERSION="${{ steps.gitversion.outputs.majorMinorPatch }}.dev$(date +%Y%m%d%H%M)"
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            VERSION="${{ steps.gitversion.outputs.majorMinorPatch }}"
+          else
+            VERSION="${{ steps.gitversion.outputs.majorMinorPatch }}.dev$(date +%Y%m%d%H%M)"
+          fi
           echo "__version__ = \"${VERSION}\"" > lib_version/version.py
       - name: Build package
         run: |
