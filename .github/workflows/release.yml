@@ -46,7 +46,7 @@ jobs:
           pip install build
       - name: Inject version into lib_version
         run: |
-          echo "__version__ = \"${{ steps.gitversion.outputs.majorMinorPatch }}\"" > lib_version/version.py
+          echo "__version__ = \"${{ steps.gitversion.outputs.semVer }}\"" > lib_version/version.py
       - name: Build package
         run: |
           python -m build
