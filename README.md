@@ -31,6 +31,7 @@ The project uses GitHub Actions to automate the release process. When a new tag 
 1. Parse the version from the tag.
 2. Inject the version into `pyproject.toml`.
 3. Build the package.
+4. Publish the package to PyPI registry
 
 ## Contact
 
